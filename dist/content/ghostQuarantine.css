@@ -1,0 +1,136 @@
+/**
+ * GhostBlock — Zero-Reflow CSS Quarantine Stylesheet
+ *
+ * Provides non-destructive, zero-reflow visual isolation for ad banners,
+ * iframe containers, and ad slots.
+ *
+ * CRITICAL ANTI-FINGERPRINTING & HONEYPOT RULE:
+ * DO NOT use `display: none !important;`. Visibility checks (such as offsetParent !== null,
+ * clientHeight !== 0 on spoofed prototypes, or getComputedStyle(el).display === 'none')
+ * are primary detection vectors used by anti-adblock scripts.
+ *
+ * Hardware containment (`contain: layout paint !important;`) and coordinate offset
+ * (`left: -9999px !important; opacity: 0 !important; height: 0 !important; overflow: hidden !important;`)
+ * guarantees 0 visible pixels and prevents layout shifts without breaking DOM node metrics.
+ */
+
+/* Google AdSense, DFP & Google Publisher Tag (GPT) Slots */
+ins.adsbygoogle,
+iframe[id^="google_ads_iframe"],
+iframe[id^="aswift_"],
+div[id^="google_ads_"],
+div[id^="div-gpt-ad"],
+div[id*="google_ads_div"],
+div[id^="ad-container"],
+div[id^="ad_container"],
+div[id^="ad-unit"],
+div[id^="ad_unit"],
+div[id="ad-leaderboard"],
+div[id="ad_leaderboard"],
+div[id="ad-header"],
+div[id="ad_header"],
+div[id="ad_top"],
+div[id="ad_bottom"],
+
+/* Generic Ad Placements & Honeypot Containers */
+div[class*="ad-placement"],
+div[class*="ad-wrapper"],
+div[class*="ad-container"],
+div[class*="ad-banner"],
+div[class*="ad-slot"],
+div[class*="ad-zone"],
+div[class*="adsbox"],
+div[class*="text-ad"],
+div[class*="text_ad"],
+div[class*="textAd"],
+
+/* Standard IAB Bait Classes */
+.pub_300x250,
+.pub_300x250m,
+.pub_728x90,
+.pub_300x600,
+.pub_160x600,
+.pub_970x250,
+.pub_320x50,
+.ad-banner,
+.ad_banner,
+.ad-slot,
+.ad_slot,
+.ad-header,
+.ad-wrapper,
+.ad-zone,
+.google_ads_iframe,
+.adsbox,
+.text-ad,
+.text_ad,
+.textAd,
+
+/* Ad Banner Image Traps */
+img[src*="banner"],
+img[src*="468x60"],
+img[src*="728x90"],
+img[src*="300x250"],
+img[src*="160x600"],
+img[src*="300x600"],
+img[src*="970x250"],
+img[src*="320x50"],
+img[src*="adbanner"],
+img[src*="ad-banner"],
+img[src*="/banners/"],
+img[src*="/ads/"],
+img[src*="banner_"],
+img[src*="banner.gif"],
+img[src*="banner"][src*=".gif"],
+img[src*="2.gif"],
+img[src*="3.gif"],
+
+/* Generic Banner Containers & IDs */
+#ad-banner,
+.banner-ad-container,
+.flash-banner,
+embed[type*="flash"],
+object[type*="flash"],
+embed[src*="banner"],
+object[data*="banner"],
+div[id*="ad-box"],
+div[class*="ad-unit"],
+div[class*="banner-ad"],
+div[id*="ad-banner"],
+div[class*="banner"],
+div[id*="banner"],
+[id^="ad-placement-"],
+
+/* YouTube Video & Feed Ad Renderers */
+ytd-ad-slot-renderer,
+ytd-banner-promo-renderer,
+ytd-in-feed-ad-layout-renderer,
+.ytp-ad-overlay-container,
+#player-ads,
+
+/* Streaming & Tube Site Overlays */
+.mgp_preroll,
+.mgp_adActive,
+.vast-ad,
+.vast-block,
+[class*="video-ad-overlay"],
+
+/* Ad Tag Attributes */
+[data-ad],
+[data-ad-slot],
+[data-ad-client],
+[data-ad-format],
+[data-ad-unit],
+[data-ad-layout] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  max-height: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  contain: layout paint !important;
+  display: block !important;
+}
